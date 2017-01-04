@@ -6,9 +6,6 @@ import org.hibernate.*;
 import org.hibernate.cfg.*;
 import com.model.*;
 
-//import com.hibernate.model.ContactNumbers;
-//import java.util.Collections;
-
 public class PersonDao {
 
 	private static SessionFactory factory;
@@ -31,7 +28,7 @@ public class PersonDao {
 		try {
 			tx = session.beginTransaction();
 			session.save(person.getAddress());
-			session.save(person); 
+			session.save(person);
 			tx.commit();
 
 			success = true;
@@ -62,25 +59,18 @@ public class PersonDao {
 			people = session.createQuery("FROM Person").list();
 			for(Person person : people) {
 				Hibernate.initialize(person.getAddress());
+				Hibernate.initialize(person.getContacts());
 			}
 			tx.commit();
 			success = true;
 		}
-		catch (HibernateException e) {
+		catch (HibernateException | NullPointerException e) {
 			if (tx!=null) {
 				tx.rollback();
 			}
 			
 			e.printStackTrace();
-			System.out.println("Hibernate exception : listPersons");
-		}
-		catch (NullPointerException e) {
-			if (tx!=null) {
-				tx.rollback();
-			}
-			
-			e.printStackTrace();
-			System.out.println("Nullpointer exception : listPersons");
+			System.out.println("Exception : listPersons");
 		}
 		finally {
 			session.close();
@@ -99,20 +89,11 @@ public class PersonDao {
 			person = (Person)session.get(Person.class, personID);
 			tx.commit();
 			Hibernate.initialize(person.getAddress());
+			Hibernate.initialize(person.getContacts());
 		}
-		catch(HibernateException e){
-			e.printStackTrace();
-			System.out.println("Hibernate exception : getPerson");
-		}
-		catch(NullPointerException e){
+		catch(HibernateException | NullPointerException | IllegalArgumentException e) {
 			//e.printStackTrace();
-			//System.out.println("Nullpointer exception : getPerson");
-			//System.out.println("Person Id does not exist.");
-		}
-		catch (IllegalArgumentException e) {
-			//e.printStackTrace();
-			//System.out.println("IllegalArgument exception : getPerson");
-			//System.out.println("Person Id does not exist.");
+			//System.out.println("Exception : getPerson");
 		}
 		finally {
 			session.close();
@@ -164,21 +145,12 @@ public class PersonDao {
 			tx.commit();
 			success = true;
 		}
-		catch (HibernateException e) {
+		catch (HibernateException | IllegalArgumentException e) {
 			if (tx != null) {
 				tx.rollback();
 			}
 			
 			e.printStackTrace();
-			System.out.println("Hibernate exception : deletePerson");
-		}
-		catch (IllegalArgumentException e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			
-			//e.printStackTrace();
-			//System.out.println("IllegalArgument exception : deletePerson");
 			System.out.println("Person Id does not exist.");
 		}
 		finally {

@@ -14,11 +14,8 @@
     <postgres.version>9.1-901.jdbc4</postgres.version>
     <!--<postgres.version>9.4-1200.jdbc41</postgres.version>-->
     <maven.assembly.version>2.6</maven.assembly.version>
-<<<<<<< HEAD
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
-=======
->>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
   </properties>
 
   <modules>

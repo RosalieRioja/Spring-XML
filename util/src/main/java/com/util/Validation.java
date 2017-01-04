@@ -9,7 +9,7 @@ import java.util.*;
 import java.text.*;
 import java.text.DateFormat;
 
-import com.util.PersonGender;
+import com.util.*;
 
 public class Validation {
 
@@ -135,20 +135,19 @@ public class Validation {
 			System.out.print(label);
 
 			input = console.readLine();
-
-			if(input.equalsIgnoreCase("true")) {
-				value = true;
-
-				success = true;
-			}
-			else if(input.equalsIgnoreCase("false")) {
-				value = false;
-
-				success = true;
-			}
-			else {
-				System.out.println("Input is not valid.");
-				success = false;
+			
+			switch(input) {
+				case "TRUE" : case "true" :
+					value = true;
+					success = true;
+					break;
+				case "FALSE" : case "false" :
+					value = false;
+					success = true;
+					break;
+				default :
+					System.out.println("Input is not valid.");
+					break;
 			}
 		}
 
@@ -164,33 +163,20 @@ public class Validation {
 			try {
 				System.out.print(label);
 				input = console.readLine();
-				gender = PersonGender.valueOf(input);
 
-				switch(gender) {
-					case MALE :
-					case FEMALE :
+				switch(input) {
+					case "MALE" : case "male" :
+						gender = PersonGender.MALE;
+						success = true;
+						break;
+					case "FEMALE" : case "female" :
+						gender = PersonGender.FEMALE;
 						success = true;
 						break;
 					default :
-						System.out.println("\"" + input + "\" is not a valid gender.");
+						System.out.println("\"" + input + "\" is not valid.");
+						break;
 				}
-/*
-				if( input.equalsIgnoreCase(PersonGender.MALE.toString()) ||
-					input.equalsIgnoreCase(PersonGender.FEMALE.toString()) ) {
-					success = true;
-				}
-				else {
-					System.out.println("\"" + input + "\" is not a valid gender.");
-				}
-
-				if( EnumUtils.isValidEnum(PersonGender.class, input) ) {
-					gender = PersonGender.valueOf(input);
-					success = true;
-				}
-				else {
-					System.out.println("\"" + input + "\" is not a valid gender.");	
-				}
-*/
 			}
 			catch(IllegalArgumentException ex) {
 				System.out.println("Input is not valid.");

@@ -2,7 +2,7 @@ package com.model;
 
 import java.util.*;
 
-import com.util.PersonGender;
+import com.util.*;
 
 public class Person {
 
@@ -14,6 +14,7 @@ public class Person {
 	private boolean currentlyEmployed;
 	private PersonGender gender;
 	private PersonAddress address;
+	private Set<Contacts> contacts;
 
 	public Person() {}
 
@@ -81,4 +82,11 @@ public class Person {
 		return this.address;
 	}
 
+	public Set getContacts() {
+		return contacts;
+	}
+	
+	public void setContacts( Set contacts_param ) {
+		this.contacts = contacts_param;
+	}
 }

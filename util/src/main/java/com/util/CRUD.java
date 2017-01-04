@@ -7,5 +7,6 @@ public interface CRUD<T> {
 	public void create(T parameter);
 	public List<T> read();
 	public void update(T parameter);
+	public void delete(T parameter);
 	public void delete(int parameter);
 }

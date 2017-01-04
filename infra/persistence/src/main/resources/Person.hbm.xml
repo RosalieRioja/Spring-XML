@@ -29,6 +29,10 @@
 		</property>
 		<many-to-one name="address" column="address" unique="true" 
 			class="com.model.PersonAddress" not-null="true"/>
+		<set name="contacts" cascade="all">
+			<key column="personId"/>
+			<one-to-many class="com.model.Contacts"/>
+		</set>
 	</class>
 	
 	<class name="com.model.PersonAddress" table="tblAddress">
@@ -39,6 +43,20 @@
 		<property name="barangay"		column="barangay"		type="string"/>
 		<property name="city"			column="city"			type="string"/>
 		<property name="zipCode"		column="zipcode"		type="int"/>
+	</class>
+
+	<class name="com.model.Contacts" table="tblContact">
+		<id name="id"	type="int"	column="id">
+			<generator class="identity"/>
+		</id>
+		<property name="type" 	column="type">
+		    <type name="org.hibernate.type.EnumType">
+		        <param name="enumClass">com.util.ContactType</param>
+		        <param name="useNamed">true</param>
+		        <param name="type">12</param>
+		    </type>
+		</property>
+		<property name="value"	column="value" 	type="string"/>
 	</class>
 
 </hibernate-mapping>

@@ -2,7 +2,6 @@ package com.model;
 
 public class PersonName {
 
-	//private int id;	//serial primary key
 	private String firstName;
 	private String lastName;
 	private String middleName;

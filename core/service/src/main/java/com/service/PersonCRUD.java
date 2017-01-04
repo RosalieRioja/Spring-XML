@@ -14,6 +14,8 @@ public class PersonCRUD implements CRUD<Person> {
 		personDao = new PersonDao();
 	}
 
+	public void delete(Person person) {}
+
 	public void create(Person person) {
 		if(personDao.addPerson(person)) { 
 			System.out.println("Record has been successfully added!\n");

@@ -8,16 +8,20 @@ import java.util.*;
 public class Functions {
 
 	private PersonCRUD personCRUD;
+	private ContactsCRUD contactsCRUD;
 
 	public Functions() {
 		personCRUD = new PersonCRUD();
+		contactsCRUD = new ContactsCRUD();
 	}
 
 	public void addPerson() {
 		Person newPerson = new Person();
 		PersonName newPersonName = new PersonName();
 		PersonAddress newPersonAddress = new PersonAddress();
-		
+		String answer;
+		boolean choice = false;
+
 		newPersonName.setFirstName(Validation.acceptString("Enter new person's first name : "));
 		newPersonName.setLastName(Validation.acceptString("Enter new person's last name : "));
 		newPersonName.setMiddleName(Validation.acceptString("Enter new person's middle name : "));
@@ -39,18 +43,66 @@ public class Functions {
 		newPerson.setAddress(newPersonAddress);
 
 		personCRUD.create(newPerson);
+
+		answer = Validation.acceptString("Do you want to add contact/s to this person? (y/n) : ");
+
+		while(!choice) {
+			switch(answer) {
+				case "Y" : case "y" :
+					choice = true;
+					contactsCRUD.create(newPerson);
+					break;
+				case "N" : case "n" :
+					choice = true;
+					break;
+				default :
+					answer = Validation.acceptString("Do you want to add contact/s to this person? (y/n) : ");
+					break;
+			}
+		}
 	}
 
 	public void listPersons() {
+		/*
+		int sort;
+		boolean choice = false;
+		String sortBy;
+
+		while(!choice) {
+			sort = Validation.enterInteger("Sort records by (1) GWA | (2) Date Hired | (3) Last Name | (4) None : ");
+
+			switch(sort) {
+				case 1 :
+					//gwa
+					choice = true;
+					break;
+				case 2 :
+					//date hired
+					choice = true;
+					break;
+				case 3 :
+					//last name
+					choice = true;
+					break;
+				case 4 :
+					//none
+					choice = true;
+					break;
+			}
+		}
+		*/
+		//
 		List<Person> lstPerson = personCRUD.read();
 
 		for (Iterator iterator = lstPerson.iterator(); iterator.hasNext(); ){
 			Person person = (Person) iterator.next();
 			PersonName personName = person.getName();
 			PersonAddress personAddress = person.getAddress();
+			Set<Contacts> personContacts = person.getContacts();
 
 			System.out.println("\n=======================================\n");
-			System.out.println("Name: " + personName.getFirstName() + " " + personName.getLastName());
+			System.out.println("\nName: " + personName.getTitle() + " " + personName.getFirstName() + " " + personName.getMiddleName() + " " 
+				+ personName.getLastName() + " " + personName.getSuffix());
 			System.out.println("Person Id : " + person.getId());
 			System.out.println("\tAddress: " + personAddress.getStreetNumber() + " " + personAddress.getBarangay()
 				+ " " + personAddress.getCity() + " " + personAddress.getZipCode());
@@ -59,7 +111,13 @@ public class Functions {
 			System.out.println("\tDate Hired: " + person.getDateHired());
 			System.out.println("\tCurrently Employed: " + person.getCurrentlyEmployed());
 			System.out.println("\tGender: " + person.getGender());
+			System.out.println("\tContacts : (Id) Type = Value");
+			for(Contacts contact : personContacts) {
+				System.out.println("\t\t(" + contact.getId() + ") " + contact.getType() + " = " + contact.getValue());
+			}
 		}
+
+		System.out.println("\n=======================================\n");
 	}
 
 	public void updatePerson() {
@@ -138,6 +196,34 @@ public class Functions {
 				default :
 					answer = Validation.acceptString("Are you sure you want to delete person record " + personId + "? (y/n) : ");
 					break;
+			}
+		}
+	}
+
+	//================================================================
+
+	public void contactFunction(String action) {
+		boolean exists = false;
+		int personId;
+		Person person;
+
+		while(!exists) {
+			personId = Validation.enterInteger("Enter Person Id : ");
+			person = personCRUD.get(personId);
+
+			if(person != null) {
+				switch(action) {
+					case "add" :
+						contactsCRUD.create(person);
+						break;
+					case "update" :
+						contactsCRUD.update(person);
+						break;
+					case "delete" :
+						contactsCRUD.delete(person);
+						break;
+				}
+				exists = true;
 			}
 		}
 	}

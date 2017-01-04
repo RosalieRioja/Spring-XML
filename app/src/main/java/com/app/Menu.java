@@ -6,6 +6,9 @@ import com.service.*;
 public class Menu {
 
 	private Functions function;
+	private final String ACTION_ADD = "add";
+	private final String ACTION_UPDATE = "update";
+	private final String ACTION_DELETE = "delete";
 
 	public Menu() {
 		function = new Functions();
@@ -39,7 +42,7 @@ public class Menu {
 					break;
 				case 2 :
 					System.out.println("\nUpdate Person record");
-					function.updatePerson();	//get record, print, get new record, update
+					function.updatePerson();
 					break;
 				case 3 :
 					System.out.println("\nDelete Person record");
@@ -51,21 +54,22 @@ public class Menu {
 					break;
 				case 5 :
 					System.out.println("\nAdd Contact to Person");
-					//action.addRow(false, null);
+					function.contactFunction(ACTION_ADD);
 					break;
 				case 6 :
 					System.out.println("\nUpdate Contact of Person");
-					//action.sort();
+					function.contactFunction(ACTION_UPDATE);
 					break;
 				case 7 :
 					System.out.println("\nDelete Contact of Person");
+					function.contactFunction(ACTION_DELETE);
 					break;
 				case 8 :
 					System.out.println("\nExit\n");
 					System.exit(0);
 					break;
 				default : 
-					System.out.println("There is no action for that number.");	//then print menu again
+					System.out.println("There is no action for that number.");
 					break;
 			}
 		}

@@ -6,11 +6,3 @@ public enum PersonGender {
 	FEMALE;
 
 }
-
-public enum ContactType {
-
-	LANDLINE,
-	MOBILE,
-	EMAIL;
-	
-}
