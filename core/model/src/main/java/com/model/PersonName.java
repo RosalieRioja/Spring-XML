@@ -20,6 +20,13 @@ public class PersonName {
 		this.setTitle(title_param);
 	}
 
+<<<<<<< HEAD
+=======
+	//public getPerson() {
+	//	;
+	//}
+
+>>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
 	public void setFirstName(String fname_param) {
 		this.firstName = fname_param;
 	}

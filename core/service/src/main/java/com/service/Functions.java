@@ -3,8 +3,11 @@ package com.service;
 import com.model.*;
 import com.util.*;
 
+<<<<<<< HEAD
 import java.util.*;
 
+=======
+>>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
 public class Functions {
 
 	private PersonCRUD personCRUD;
@@ -16,7 +19,10 @@ public class Functions {
 	public void addPerson() {
 		Person newPerson = new Person();
 		PersonName newPersonName = new PersonName();
+<<<<<<< HEAD
 		PersonAddress newPersonAddress = new PersonAddress();
+=======
+>>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
 		
 		newPersonName.setFirstName(Validation.acceptString("Enter new person's first name : "));
 		newPersonName.setLastName(Validation.acceptString("Enter new person's last name : "));
@@ -24,6 +30,7 @@ public class Functions {
 		newPersonName.setSuffix(Validation.acceptString("Enter new person's suffix : "));
 		newPersonName.setTitle(Validation.acceptString("Enter new person's title : "));
 
+<<<<<<< HEAD
 		System.out.println("Enter new person's address");
 		newPersonAddress.setStreetNumber(Validation.enterInteger("Street number : "));
 		newPersonAddress.setBarangay(Validation.acceptString("Barangay : "));
@@ -31,17 +38,25 @@ public class Functions {
 		newPersonAddress.setZipCode(Validation.enterInteger("Zip code : "));
 
 		newPerson.setName(newPersonName);
+=======
+		newPerson.setPersonName(newPersonName);
+>>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
 		newPerson.setBirthday(Validation.validateDate("Enter new person's birthday (mm/dd/yyyy) : "));
 		newPerson.setGWA(Validation.validateFloat("Enter new person's Grade Weighted Average : "));
 		newPerson.setDateHired(Validation.validateDate("Enter new person's Date Hired (mm/dd/yyyy) : "));
 		newPerson.setCurrentlyEmployed(Validation.acceptBoolean("Enter if new person is currently employed (true/false) : "));
+<<<<<<< HEAD
 		newPerson.setGender(Validation.validateGender("Enter new person's gender (MALE/FEMALE) : "));
 		newPerson.setAddress(newPersonAddress);
+=======
+		newPerson.setPersonGender(Validation.validateGender("Enter new person's gender : "));
+>>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
 
 		personCRUD.create(newPerson);
 	}
 
 	public void listPersons() {
+<<<<<<< HEAD
 		List<Person> lstPerson = personCRUD.read();
 
 		for (Iterator iterator = lstPerson.iterator(); iterator.hasNext(); ){
@@ -140,6 +155,17 @@ public class Functions {
 					break;
 			}
 		}
+=======
+		personCRUD.read();
+	}
+
+	public void getPerson() {
+		personCRUD.get(Validation.enterInteger("Enter id : "));
+	}
+
+	public void deletePerson() {
+		personCRUD.delete(Validation.enterInteger("Enter id : "));
+>>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
 	}
 
 }

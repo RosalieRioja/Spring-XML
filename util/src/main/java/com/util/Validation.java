@@ -87,6 +87,10 @@ public class Validation {
 
 			try{
 				value = df.parse(console.readLine());
+<<<<<<< HEAD
+=======
+				//Validate.notEmpty(value);
+>>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
 				success = true;
 			}
 			catch(IllegalArgumentException ex) {
@@ -116,6 +120,10 @@ public class Validation {
 				success = true;
 			}
 			catch(IllegalArgumentException ex) {
+<<<<<<< HEAD
+=======
+				//System.out.println("Input cannot be empty.");
+>>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
 				System.out.println("Input is not valid.");
 			}
 			catch(NullPointerException ex) {
@@ -164,11 +172,19 @@ public class Validation {
 			try {
 				System.out.print(label);
 				input = console.readLine();
+<<<<<<< HEAD
 				gender = PersonGender.valueOf(input);
+=======
+				//gender = PersonGender.valueOf(input);
+>>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
 
 				switch(gender) {
 					case MALE :
 					case FEMALE :
+<<<<<<< HEAD
+=======
+						gender = PersonGender.valueOf(input);
+>>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
 						success = true;
 						break;
 					default :
