@@ -34,7 +34,6 @@ public class Menu {
 			switch(iAction) {
 
 				case 1 :
-<<<<<<< HEAD
 					System.out.println("\nRegister Person");
 					function.addPerson();
 					break;
@@ -63,36 +62,6 @@ public class Menu {
 					break;
 				case 8 :
 					System.out.println("\nExit\n");
-=======
-					System.out.println("Register Person");
-					function.addPerson();
-					break;
-				case 2 :
-					System.out.println("Update Person record");
-					function.getPerson();	//get record, print, get new record, update
-					break;
-				case 3 :
-					System.out.println("Delete Person record");
-					function.deletePerson();
-					break;
-				case 4 :
-					System.out.println("List of Person record");	//sort
-					function.listPersons();
-					break;
-				case 5 :
-					System.out.println("Add Contact to Person");
-					//action.addRow(false, null);
-					break;
-				case 6 :
-					System.out.println("Update Contact of Person");
-					//action.sort();
-					break;
-				case 7 :
-					System.out.println("Delete Contact of Person");
-					break;
-				case 8 :
-					System.out.println("Exit\n");
->>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
 					System.exit(0);
 					break;
 				default : 

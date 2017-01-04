@@ -5,7 +5,6 @@ public enum PersonGender {
 	MALE,
 	FEMALE;
 
-<<<<<<< HEAD
 }
 
 public enum ContactType {
@@ -14,6 +13,4 @@ public enum ContactType {
 	MOBILE,
 	EMAIL;
 	
-=======
->>>>>>> 73f5e5b4ca6f3300f19dc4612b4298afad1366ec
 }
