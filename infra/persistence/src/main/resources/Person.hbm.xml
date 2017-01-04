@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.model.Person" table="tblperson">
+		<id name="id" type="int" column="id">
+			<generator class="identity"/>
+		</id>
+		<component name="PersonName">
+			<property name="firstName" 	column="firstname" 	type="string"/>
+			<property name="lastName" 	column="lastname" 	type="string"/>
+			<property name="middleName" column="middlename" type="string"/>
+			<property name="suffix" 	column="suffix" 	type="string"/>
+			<property name="title" 		column="title" 		type="string"/>
+		</component>
+		<property name="birthday" 	column="birthday" 	type="date"/>
+		<property name="GWA" 		column="gwa" 		type="float"/>
+		<property name="dateHired" 	column="datehired" 	type="date"/>
+		<property name="currentlyEmployed" column="currentlyemployed" type="boolean"/>
+		<property name="gender" 	column="gender">
+		    <type name="org.hibernate.type.EnumType">
+		        <param name="enumClass">com.util.PersonGender</param>
+		        <param name="useNamed">true</param>
+		        <param name="type">12</param>
+		    </type>
+		</property>
+	</class>
+</hibernate-mapping>
