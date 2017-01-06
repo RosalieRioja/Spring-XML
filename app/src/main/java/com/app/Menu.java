@@ -21,7 +21,7 @@ public class Menu {
 	private void startMenu() {
 		int iAction = 0;
 
-		while(iAction != 8) {
+		while(iAction != 10) {
 			System.out.println("\nActions (Enter the number of the desired action) :");
 			System.out.println("(1) Register Person");
 			System.out.println("(2) Update Person record");
@@ -30,7 +30,9 @@ public class Menu {
 			System.out.println("(5) Add Contact to Person");
 			System.out.println("(6) Update Contact of Person");
 			System.out.println("(7) Delete Contact of Person\n");
-			System.out.println("(8) Exit\n");
+			System.out.println("(8) Assign Role to Person");
+			System.out.println("(9) Unassign Role of Person\n");
+			System.out.println("(10) Exit\n");
 
 			iAction = Validation.enterInteger("Action no.: ");
 
@@ -49,7 +51,7 @@ public class Menu {
 					function.deletePerson();
 					break;
 				case 4 :
-					System.out.println("\nList of Person record");	//sort
+					System.out.println("\nList of Person record");
 					function.listPersons();
 					break;
 				case 5 :
@@ -65,6 +67,14 @@ public class Menu {
 					function.contactFunction(ACTION_DELETE);
 					break;
 				case 8 :
+					System.out.println("\nAssign Role to Person");
+					function.roleFunction(ACTION_ADD);
+					break;
+				case 9 :
+					System.out.println("\nUnassign Role of Person");
+					function.roleFunction(ACTION_DELETE);
+					break;
+				case 10 :
 					System.out.println("\nExit\n");
 					System.exit(0);
 					break;

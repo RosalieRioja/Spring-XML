@@ -14,9 +14,9 @@ public class ContactsCRUD implements CRUD<Person> {
 		personCRUD = new PersonCRUD();
 	}
 
-	public List<Person> read() {return null;}
+	public List<Person> read(int param) {return null;}
 
-	public void delete(int i) {}
+	//public void delete(int i) {}
 
 	public void create(Person person) {
 		Contacts newContact;
@@ -141,7 +141,7 @@ public class ContactsCRUD implements CRUD<Person> {
 			}
 			
 			updateContact.setValue(Validation.acceptString("Enter new person's " + updateContact.getType().toString().toLowerCase() + " : "));
-			
+
 			personCRUD.update(person);
 		}
 		else {
@@ -193,6 +193,7 @@ public class ContactsCRUD implements CRUD<Person> {
 								break;
 							}
 						}
+
 						personCRUD.update(person);
 						choice = true;
 						break;

@@ -11,14 +11,19 @@
   <groupId>com.persistence</groupId>
   <artifactId>persistence</artifactId>
   <name>persistence</name>
-<!--
-  <build>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-    <filtering>true</filtering>
-      </resource>
-    </resources>
-  </build>   
--->
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-ehcache</artifactId>
+    </dependency>
+
+  </dependencies>
+  
 </project>

@@ -9,10 +9,12 @@ public class Functions {
 
 	private PersonCRUD personCRUD;
 	private ContactsCRUD contactsCRUD;
+	private RolesCRUD rolesCRUD;
 
 	public Functions() {
 		personCRUD = new PersonCRUD();
 		contactsCRUD = new ContactsCRUD();
+		rolesCRUD = new RolesCRUD();
 	}
 
 	public void addPerson() {
@@ -63,61 +65,59 @@ public class Functions {
 	}
 
 	public void listPersons() {
-		/*
+		List<Person> lstPerson = null;
 		int sort;
 		boolean choice = false;
 		String sortBy;
 
 		while(!choice) {
-			sort = Validation.enterInteger("Sort records by (1) GWA | (2) Date Hired | (3) Last Name | (4) None : ");
+			sort = Validation.enterInteger("Sort records by (1) GWA asc | (2) GWA desc | (3) Date Hired asc | (4) Date Hired desc | (5) Last Name asc"
+				+ " | (6) Last Name desc | (7) None : ");
 
 			switch(sort) {
-				case 1 :
-					//gwa
+				case 1 : case 2 : case 3 : case 4 : case 5 : case 6 : case 7 :
+					lstPerson = personCRUD.read(sort);
 					choice = true;
 					break;
-				case 2 :
-					//date hired
-					choice = true;
-					break;
-				case 3 :
-					//last name
-					choice = true;
-					break;
-				case 4 :
-					//none
-					choice = true;
+				default :
+					System.out.println("No sort for that number.");
 					break;
 			}
 		}
-		*/
-		//
-		List<Person> lstPerson = personCRUD.read();
+		
+		//none
+		//lstPerson = personCRUD.read();
+		if(lstPerson != null) {
+			for (Iterator iterator = lstPerson.iterator(); iterator.hasNext(); ){
+				Person person = (Person) iterator.next();
+				PersonName personName = person.getName();
+				PersonAddress personAddress = person.getAddress();
+				Set<Contacts> personContacts = person.getContacts();
+				Set<Roles> personRoles = person.getRoles();
 
-		for (Iterator iterator = lstPerson.iterator(); iterator.hasNext(); ){
-			Person person = (Person) iterator.next();
-			PersonName personName = person.getName();
-			PersonAddress personAddress = person.getAddress();
-			Set<Contacts> personContacts = person.getContacts();
+				System.out.println("\n=======================================\n");
+				System.out.println("\nName: " + personName.getTitle() + " " + personName.getFirstName() + " " + personName.getMiddleName() + " " 
+					+ personName.getLastName() + " " + personName.getSuffix());
+				System.out.println("Person Id : " + person.getId());
+				System.out.println("\tAddress: " + personAddress.getStreetNumber() + " " + personAddress.getBarangay()
+					+ " " + personAddress.getCity() + " " + personAddress.getZipCode());
+				System.out.println("\tBirthday: " + person.getBirthday());
+				System.out.println("\tGWA: " + person.getGWA());
+				System.out.println("\tDate Hired: " + person.getDateHired());
+				System.out.println("\tCurrently Employed: " + person.getCurrentlyEmployed());
+				System.out.println("\tGender: " + person.getGender());
+				System.out.println("\tContacts : (Id) Type = Value");
+				for(Contacts contact : personContacts) {
+					System.out.println("\t\t(" + contact.getId() + ") " + contact.getType() + " = " + contact.getValue());
+				}
+				System.out.println("\tRoles : (Id) Role");
+				for(Roles role : personRoles) {
+					System.out.println("\t\t(" + role.getId() + ") " + role.getValue());
+				}
+			}
 
 			System.out.println("\n=======================================\n");
-			System.out.println("\nName: " + personName.getTitle() + " " + personName.getFirstName() + " " + personName.getMiddleName() + " " 
-				+ personName.getLastName() + " " + personName.getSuffix());
-			System.out.println("Person Id : " + person.getId());
-			System.out.println("\tAddress: " + personAddress.getStreetNumber() + " " + personAddress.getBarangay()
-				+ " " + personAddress.getCity() + " " + personAddress.getZipCode());
-			System.out.println("\tBirthday: " + person.getBirthday());
-			System.out.println("\tGWA: " + person.getGWA());
-			System.out.println("\tDate Hired: " + person.getDateHired());
-			System.out.println("\tCurrently Employed: " + person.getCurrentlyEmployed());
-			System.out.println("\tGender: " + person.getGender());
-			System.out.println("\tContacts : (Id) Type = Value");
-			for(Contacts contact : personContacts) {
-				System.out.println("\t\t(" + contact.getId() + ") " + contact.getType() + " = " + contact.getValue());
-			}
 		}
-
-		System.out.println("\n=======================================\n");
 	}
 
 	public void updatePerson() {
@@ -221,6 +221,31 @@ public class Functions {
 						break;
 					case "delete" :
 						contactsCRUD.delete(person);
+						break;
+				}
+				exists = true;
+			}
+		}
+	}
+
+	//================================================================
+
+	public void roleFunction(String action) {
+		boolean exists = false;
+		int personId;
+		Person person;
+
+		while(!exists) {
+			personId = Validation.enterInteger("Enter Person Id : ");
+			person = personCRUD.get(personId);
+
+			if(person != null) {
+				switch(action) {
+					case "add" :
+						rolesCRUD.create(person);
+						break;
+					case "delete" :
+						rolesCRUD.delete(person);
 						break;
 				}
 				exists = true;

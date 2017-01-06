@@ -27,8 +27,8 @@
 		        <param name="type">12</param>
 		    </type>
 		</property>
-		<many-to-one name="address" column="address" unique="true" 
-			class="com.model.PersonAddress" not-null="true"/>
+		<one-to-one name="address" column="address"	class="com.model.PersonAddress"
+			not-null="true" constrained="true" />
 		<set name="contacts" cascade="all">
 			<key column="personId"/>
 			<one-to-many class="com.model.Contacts"/>

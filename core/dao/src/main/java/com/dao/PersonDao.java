@@ -1,9 +1,13 @@
 package com.dao;
 
 import java.util.*;
+import javax.persistence.*;
+//import javax.persistence.criteria.JoinType;
 
 import org.hibernate.*;
 import org.hibernate.cfg.*;
+import org.hibernate.criterion.*;
+
 import com.model.*;
 
 public class PersonDao {
@@ -27,7 +31,6 @@ public class PersonDao {
 
 		try {
 			tx = session.beginTransaction();
-			session.save(person.getAddress());
 			session.save(person);
 			tx.commit();
 
@@ -57,10 +60,6 @@ public class PersonDao {
 		try {
 			tx = session.beginTransaction();
 			people = session.createQuery("FROM Person").list();
-			for(Person person : people) {
-				Hibernate.initialize(person.getAddress());
-				Hibernate.initialize(person.getContacts());
-			}
 			tx.commit();
 			success = true;
 		}
@@ -75,7 +74,76 @@ public class PersonDao {
 		finally {
 			session.close();
 		}
+		System.out.println(people.size());
+		return people;
+	}
 
+	public List<Person> listPersonsCriteria(String sort) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		boolean success = false;
+		List<Person> people = null;
+		Criteria cr = null;
+
+		try {
+			tx = session.beginTransaction();
+			cr = session.createCriteria(Person.class, "person");//, JoinType.INNER);//, "person");//, CriteriaSpecification.INNER_JOIN);
+			//cr.createAlias("roles", "roles");
+			//cr.setFetchMode("person.roles", FetchMode.JOIN);
+        	//cr.setResultTransformer(CriteriaSpecification.INNER_JOIN);
+			//cr.createAlias("roles", "role");
+			//cr.add(Restrictions.eq("roles.id", "person.id"));
+			if(sort == "asc") {
+				cr.addOrder(Order.asc("GWA"));
+			}
+			if(sort == "desc") {
+				cr.addOrder(Order.desc("GWA"));
+			}
+			people = cr.list();
+			tx.commit();
+			success = true;
+		}
+		catch (HibernateException | NullPointerException e) {
+			if (tx!=null) {
+				tx.rollback();
+			}
+			
+			e.printStackTrace();
+			System.out.println("Exception : listPersonsCriteria");
+		}
+		finally {
+			session.close();
+		}
+
+		System.out.println(people.size());
+		return people;
+	}
+
+	public List<Person> listPersonsQuery(String sort, String column) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		boolean success = false;
+		List<Person> people = null;
+
+		try {
+			tx = session.beginTransaction();
+			people = session.createQuery("FROM Person ORDER BY " + column + " " + sort).list();
+			tx.commit();
+			success = true;
+		}
+		catch (HibernateException | NullPointerException e) {
+			if (tx!=null) {
+				tx.rollback();
+			}
+			
+			e.printStackTrace();
+			System.out.println("Exception : listPersonsCriteria");
+		}
+		finally {
+			session.close();
+		}
+
+		System.out.println(people.size());
 		return people;
 	}
 
@@ -88,8 +156,6 @@ public class PersonDao {
 			tx = session.beginTransaction();
 			person = (Person)session.get(Person.class, personID);
 			tx.commit();
-			Hibernate.initialize(person.getAddress());
-			Hibernate.initialize(person.getContacts());
 		}
 		catch(HibernateException | NullPointerException | IllegalArgumentException e) {
 			//e.printStackTrace();
@@ -114,7 +180,6 @@ public class PersonDao {
 		try{
 			tx = session.beginTransaction();
 			session.update(updatedPerson);
-			session.update(updatedPerson.getAddress());
 			tx.commit();
 			success = true;
 		}
@@ -158,6 +223,60 @@ public class PersonDao {
 		}
 
 		return success;
+	}
+
+	//================================================================
+
+	public Roles getRole(int roleID){
+		Roles role = null;
+		Session session = factory.openSession();
+		Transaction tx = null;
+
+		try{
+			tx = session.beginTransaction();
+			role = (Roles)session.get(Roles.class, roleID);
+			tx.commit();
+		}
+		catch(HibernateException | NullPointerException | IllegalArgumentException e) {
+			//e.printStackTrace();
+			//System.out.println("Exception : getRole");
+		}
+		finally {
+			session.close();
+
+			if(role == null) {
+				System.out.println("Role Id does not exist.");
+			}
+		}
+		
+		return role;
+	}
+
+	public List<Roles> listRoles() {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		boolean success = false;
+		List<Roles> roles = null;
+		
+		try {
+			tx = session.beginTransaction();
+			roles = session.createQuery("FROM Roles").list();
+			tx.commit();
+			success = true;
+		}
+		catch (HibernateException | NullPointerException e) {
+			if (tx!=null) {
+				tx.rollback();
+			}
+			
+			e.printStackTrace();
+			System.out.println("Exception : listRoles");
+		}
+		finally {
+			session.close();
+		}
+
+		return roles;
 	}
 
 }

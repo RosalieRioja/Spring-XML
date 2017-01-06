@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
     <session-factory>
+    	<property name="hibernate.hbm2ddl.auto">create</property>
+		
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+        
+        <!--<property name="net.sf.ehcache.configurationResourceName">/home/ecc/ECC%20Rosalie/Hibernate/GitRepo/HibernateAnnotation/infra/persistence/src/main/ehcache.xml</property>-->
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</property>
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost/hibernatexml</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost/hibernateannotation</property>
 
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">postgres</property>
 
-        <mapping resource="Person.hbm.xml"></mapping>
+        <property name="show_sql">true</property>
+
+        <mapping class="com.model.Person"></mapping>
+        <mapping class="com.model.PersonAddress"></mapping>
+        <mapping class="com.model.Contacts"></mapping>
+        <mapping class="com.model.Roles"></mapping>
     </session-factory>
 </hibernate-configuration >

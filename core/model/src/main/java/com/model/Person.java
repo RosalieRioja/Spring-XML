@@ -1,20 +1,51 @@
 package com.model;
 
 import java.util.*;
+import javax.persistence.*;
 
 import com.util.*;
 
+@Entity
+@Table(name = "tblPerson")
 public class Person {
 
-	private int id;	//serial primary key
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
+
+	@Embedded
 	private PersonName name;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "birthday")
 	private Date birthday;
+
+	@Column(name = "GWA")
 	private float GWA;
+
+	@Temporal(TemporalType.DATE)
+	@Column (name = "dateHired")
 	private Date dateHired;
+
+	@Column(name = "currentlyEmployed")
 	private boolean currentlyEmployed;
+
+	@Column(name = "gender")
+	@Enumerated(EnumType.STRING)
 	private PersonGender gender;
+
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "addressId")
 	private PersonAddress address;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "personId")
 	private Set<Contacts> contacts;
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "tblPerson_Role", joinColumns = @JoinColumn(name = "personId"), inverseJoinColumns = @JoinColumn(name = "roleId", updatable = false))
+	private Set<Roles> roles;
 
 	public Person() {}
 
@@ -82,11 +113,20 @@ public class Person {
 		return this.address;
 	}
 
-	public Set getContacts() {
-		return contacts;
+	public Set<Contacts> getContacts() {
+		return this.contacts;
 	}
 	
-	public void setContacts( Set contacts_param ) {
+	public void setContacts(Set<Contacts> contacts_param) {
 		this.contacts = contacts_param;
 	}
+
+	public Set<Roles> getRoles() {
+		return this.roles;
+	}
+	
+	public void setRoles(Set<Roles> roles_param) {
+		this.roles = roles_param;
+	}
+
 }

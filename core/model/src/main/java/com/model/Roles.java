@@ -1,30 +1,29 @@
 package com.model;
 
+import java.util.*;
 import javax.persistence.*;
 
-import com.util.ContactType;
+//import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-@Table(name = "tblContact")
-public class Contacts {
+@Table(name = "tblRole")
+//@Cacheable
+//@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)//, region = "Roles")
+public class Roles {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "type")
-	@Enumerated(EnumType.STRING)
-	private ContactType type;
-
 	@Column(name = "value")
 	private String value;
+
+	@ManyToMany
+	public Set<Person> person;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "personId", referencedColumnName = "id")
-	public Person person;
-	
-	public Contacts() {}
+	public Roles() {}
 	
 	public int getId() {
 		return this.id;
@@ -34,14 +33,6 @@ public class Contacts {
 		this.id = id;
 	}
 	
-	public ContactType getType() {
-		return this.type;
-	}
-	
-	public void setType( ContactType type_param ) {
-		this.type = type_param;
-	}
-
 	public String getValue() {
 		return this.value;
 	}
@@ -50,11 +41,11 @@ public class Contacts {
 		this.value = value_param;
 	}
 
-	public Person getPerson() {
+	public Set<Person> getPerson() {
 		return this.person;
 	}
 
-	public void setPerson(Person person_param) {
+	public void setPerson(Set<Person> person_param) {
 		this.person = person_param;
 	}
 
@@ -62,7 +53,7 @@ public class Contacts {
 		if (obj == null) return false;
 		if (!this.getClass().equals(obj.getClass())) return false;
 		
-		Contacts obj2 = (Contacts)obj;
+		Roles obj2 = (Roles)obj;
 		
 		if((this.value.equals(obj2.getValue())))
 		{

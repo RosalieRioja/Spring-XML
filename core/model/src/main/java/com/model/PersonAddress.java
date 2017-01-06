@@ -1,11 +1,26 @@
 package com.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "tblAddress")
 public class PersonAddress {
 
-	private int id;	//serial primary key
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
+
+	@Column(name = "streetNumber")
 	private int streetNumber;
+
+	@Column(name = "barangay")
 	private String barangay;
+
+	@Column(name = "city")
 	private String city;
+	
+	@Column(name = "zipcode")
 	private int zipCode;
 
 	public PersonAddress() {}

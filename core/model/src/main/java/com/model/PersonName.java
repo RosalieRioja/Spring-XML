@@ -1,5 +1,8 @@
 package com.model;
 
+import javax.persistence.*;
+
+@Embeddable
 public class PersonName {
 
 	private String firstName;
