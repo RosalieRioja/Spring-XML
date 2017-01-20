@@ -9,14 +9,21 @@
   <name>HibernateXML</name>
 
   <properties>
+    <project.version>1.0-SNAPSHOT</project.version>
     <commons.lang3.version>3.4</commons.lang3.version>
     <hibernate.version>5.2.5.Final</hibernate.version>
     <postgres.version>9.1-901.jdbc4</postgres.version>
-    <!--<postgres.version>9.4-1200.jdbc41</postgres.version>-->
     <maven.assembly.version>2.6</maven.assembly.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
     <javax.persistence.version>1.0.0.Final</javax.persistence.version>
+    <javax.servlet.version>3.1.0</javax.servlet.version>
+    <!--<maven.jetty.version>8.1.16.v20140903</maven.jetty.version>-->
+
+        <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <maven-war-plugin.version>2.6</maven-war-plugin.version>
+        <jetty-maven-plugin.version>9.3.11.v20160721</jetty-maven-plugin.version>
   </properties>
 
   <modules>
@@ -28,19 +35,19 @@
   
   <dependencyManagement>
     <dependencies>
-     <!--
+
       <dependency>
-        <groupId>net.sf.ehcache</groupId>
-        <artifactId>ehcache-core</artifactId>
-        <version>2.6.11</version>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${javax.servlet.version}</version>
       </dependency>
-    -->
+  <!--
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-ehcache</artifactId>
         <version>${hibernate.version}</version>
       </dependency>
-
+-->
       <dependency>
         <groupId>org.hibernate.javax.persistence</groupId>
         <artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -64,15 +71,27 @@
         <artifactId>postgresql</artifactId>
         <version>${postgres.version}</version>
       </dependency>
+
     </dependencies>
   </dependencyManagement>
-  
+<!--
   <profiles>
+
     <profile>
-    <id>xml-development</id>
+      <id>development</id>
+
+      <properties>
+        <postgres.dialect>org.hibernate.dialect.PostgreSQLDialect</postgres.dialect>
+        <postgres.driver>org.postgresql.Driver</postgres.driver>
+        <postgres.url>jdbc:postgresql://localhost/hibernateannotation</postgres.url>
+        <postgres.password>postgres</postgres.password>
+        <postgres.username>postgres</postgres.username>
+      </properties>
+-->
       <build>
         <pluginManagement>
           <plugins>
+<!--
             <plugin>
               <artifactId>maven-assembly-plugin</artifactId>
               <version>${maven.assembly.version}</version>
@@ -96,10 +115,50 @@
                 </execution>
               </executions>
             </plugin>
+-->
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.3.0.RC1</version>
+        <configuration>
+          <descriptor>app/src/main/webapp/WEB-INF/web.xml</descriptor>
+          <war>app/target/app-{project.version}.war</war>
+        <webAppSourceDirectory>app/src/main/webapp</webAppSourceDirectory>
+        <webApp>
+          <contextPath>/</contextPath>
+          <descriptor>app/src/main/webapp/WEB-INF/web.xml</descriptor>
+        </webApp>
+        <classesDirectory>app/target/classes</classesDirectory>
+        </configuration>
+      </plugin>
+<!--
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${maven-war-plugin.version}</version>
+                    <configuration>
+                        <webXml>app/src/main/webapp/WEB-INF/web.xml</webXml>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>${jetty-maven-plugin.version}</version>
+                </plugin>
+-->
           </plugins>
          </pluginManagement>
       </build>
+      
+      <!--
     </profile>
-  </profiles>
 
+  </profiles>
+-->
 </project>

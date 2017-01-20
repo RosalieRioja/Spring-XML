@@ -1,0 +1,80 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+<script>
+
+function register() {
+    alert('register');
+}
+
+</script>
+<!-- JSP -->
+<html>
+    <style type="text/css">
+    body {
+        background-image:
+            url('http://cdn.crunchify.com/wp-content/uploads/2013/03/Crunchify.bg_.300.png');
+    }
+    </style>
+ 
+    <head>
+        <!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">-->
+        <title>Mini Registration System</title>
+    </head>
+
+    <body>
+     
+     <!--
+        <div align="center" style="margin-top: 50px;">
+            <form action="">
+                Please enter your Username:  <input type="text" name="username" size="20px"> <br>
+                Please enter your Password:  <input type="text" name="password" size="20px"> <br><br>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+     -->
+
+    <div align="center">
+        Mini Registration System
+    </div>
+
+    <div align="center">
+        <br>Menu<br>
+        <br><a href="#" onclick="$('.form-add-person').show();" >Register Person</a> <!-- go to form -->
+        <br><a href="#">Update Person record</a>
+        <br><a href="#">Delete Person record</a>
+        <br><a href="#">Print list of Person record</a>
+        <br><a href="#">Add Contact to Person</a>
+        <br><a href="#">Update Contact of Person</a>
+        <br><a href="#">Delete Contact of Person</a>
+        <br><a href="#">Assign Role to Person</a>
+        <br><a href="#">Unassign Role of Person</a>
+    </div>
+
+    <div align="center" style="margin-top: 50px; display: none;" class="form-add-person" >
+        <form action="/" method="post">    <!-- add method here -->
+            Name: <br>
+            First name: <input      type="text" name="firstname"    size="20px"> <br>
+            Middle name:    <input  type="text" name="middlename"   size="20px"> <br>
+            Last name:  <input      type="text" name="lastname"     size="20px"> <br>
+            Suffix: <input          type="text" name="suffix"       size="20px"> <br>
+            Title:  <input          type="text" name="title"        size="20px"> <br>
+            Birthday:   <input      type="text" name="birthday"     size="20px"> <br>
+            Grade Weighted Average: <input type="text" name="gwa"   size="20px"> <br>
+            Date Hired: <input      type="text" name="datehired"    size="20px"> <br>
+            Employed:   <input      type="text" name="employed"     size="20px"> <br> <!-- radio button -->
+            Gender: <input          type="text" name="gender"       size="20px"> <br> <!-- radio buttin -->
+            Address <br>
+            Street number:  <input  type="text" name="streetnumber" size="20px"> <br>
+            Barangay:   <input      type="text" name="barangay"     size="20px"> <br>
+            City:   <input          type="text" name="city"         size="20px"> <br>
+            Zip code:   <input      type="text" name="zipcode"      size="20px"> <br><br>
+            <!--<input type="submit" value="submit">-->
+            <input type="submit" value="register" onsubmit="confirm('Continue?'));">
+            <input type="button" value="cancel" onclick="$('.form-add-person').hide();">
+        </form>
+    </div>
+
+    </body>
+</html>
