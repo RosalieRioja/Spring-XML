@@ -25,5 +25,38 @@
     </dependency>
 -->
   </dependencies>
-  
+
+  <profiles>
+    <profile>
+      <id>config.properties</id>
+
+      <build>
+        <filters>
+          <filter>src/main/resources/config.properties</filter>
+        </filters>
+        <resources>
+          <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+          </resource>
+        </resources>
+      </build>
+
+    </profile>
+    
+    <profile>
+      <id>development</id>
+
+      <properties>
+        <postgres.dialect>org.hibernate.dialect.PostgreSQLDialect</postgres.dialect>
+        <postgres.driver>org.postgresql.Driver</postgres.driver>
+        <postgres.url>jdbc:postgresql://localhost/hibernateannotation</postgres.url>
+        <postgres.password>postgres</postgres.password>
+        <postgres.username>postgres</postgres.username>
+      </properties>
+
+    </profile>
+    
+  </profiles>
+
 </project>

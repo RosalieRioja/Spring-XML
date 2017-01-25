@@ -4,16 +4,34 @@
     version="3.0">
 
   <welcome-file-list>
-    <welcome-file>MainClass.jsp</welcome-file>
+    <welcome-file>ListPerson.jsp</welcome-file>
   </welcome-file-list>
   
     <servlet>
-        <servlet-name>Main</servlet-name>
+        <servlet-name>Menu</servlet-name>
         <servlet-class>com.MainClass</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Main</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>Menu</servlet-name>
+        <url-pattern>/Menu</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>Person</servlet-name>
+        <servlet-class>com.app.AddPerson</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Person</servlet-name>
+        <url-pattern>/Person/*</url-pattern>
+    </servlet-mapping>
+    <!--
+    <servlet>
+        <servlet-name>ListPerson</servlet-name>
+        <servlet-class>com.app.AddPerson</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListPerson</servlet-name>
+        <url-pattern>/listPerson</url-pattern>
+    </servlet-mapping>
+    -->
 </web-app>
