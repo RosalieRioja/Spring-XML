@@ -43,7 +43,7 @@
       </build>
 
     </profile>
-    
+
     <profile>
       <id>development</id>
 
@@ -54,6 +54,15 @@
         <postgres.password>postgres</postgres.password>
         <postgres.username>postgres</postgres.username>
       </properties>
+
+      <build>
+        <resources>
+          <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+          </resource>
+        </resources>
+      </build>   
 
     </profile>
     

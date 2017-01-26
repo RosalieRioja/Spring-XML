@@ -37,10 +37,12 @@ public class Person {
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "addressId")
+	//@OnDelete(action = OnDeleteAction.CASCADE)
 	private PersonAddress address;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name = "personId")
+	//@OnDelete(action = OnDeleteAction.CASCADE)
 	private Set<Contacts> contacts;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

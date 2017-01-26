@@ -22,6 +22,7 @@ public class Contacts {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "personId", referencedColumnName = "id")
+	//@OnDelete(action = OnDeleteAction.CASCADE)
 	public Person person;
 	
 	public Contacts() {}

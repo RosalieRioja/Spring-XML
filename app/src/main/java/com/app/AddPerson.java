@@ -55,14 +55,13 @@ public class AddPerson extends HttpServlet {
             Person newPerson = new Person();
             PersonName newPersonName = new PersonName();
             PersonAddress newPersonAddress = new PersonAddress();
-            String answer;
-            boolean choice = false;
             DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
             PersonGender gender = null;
 
             try{
                 if(!request.getParameter("id").equals("") && request.getParameter("id") != null) {
                     newPerson = personCRUD.get(Integer.parseInt(request.getParameter("id")));
+                    newPersonAddress = newPerson.getAddress();
                 }
                 newPersonName.setFirstName(request.getParameter("firstname"));
                 newPersonName.setLastName(request.getParameter("lastname"));

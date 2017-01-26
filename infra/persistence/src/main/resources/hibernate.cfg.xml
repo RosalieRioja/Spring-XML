@@ -5,7 +5,7 @@
 
 <hibernate-configuration>
     <session-factory>
-    	<!--<property name="hibernate.hbm2ddl.auto">create</property>-->
+    	<property name="hibernate.hbm2ddl.auto">update</property>
 
         <property name="hibernate.dialect">${postgres.dialect}</property>
         <property name="hibernate.connection.driver_class">${postgres.driver}</property>
@@ -21,6 +21,7 @@
 -->
         <!--<property name="show_sql">true</property>-->
 
+        <!--<mapping package="com.model"></mapping>-->
         <mapping class="com.model.Person"></mapping>
         <mapping class="com.model.PersonAddress"></mapping>
         <mapping class="com.model.Contacts"></mapping>

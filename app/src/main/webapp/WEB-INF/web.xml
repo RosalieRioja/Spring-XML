@@ -4,7 +4,7 @@
     version="3.0">
 
   <welcome-file-list>
-    <welcome-file>ListPerson.jsp</welcome-file>
+    <welcome-file>MainClass.jsp</welcome-file>
   </welcome-file-list>
   
     <servlet>
@@ -24,14 +24,14 @@
         <servlet-name>Person</servlet-name>
         <url-pattern>/Person/*</url-pattern>
     </servlet-mapping>
-    <!--
+    
     <servlet>
-        <servlet-name>ListPerson</servlet-name>
-        <servlet-class>com.app.AddPerson</servlet-class>
+        <servlet-name>Contact</servlet-name>
+        <servlet-class>com.app.ContactController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ListPerson</servlet-name>
-        <url-pattern>/listPerson</url-pattern>
+        <servlet-name>Contact</servlet-name>
+        <url-pattern>/Contact/*</url-pattern>
     </servlet-mapping>
-    -->
+    
 </web-app>

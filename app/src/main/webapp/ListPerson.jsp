@@ -58,18 +58,11 @@ function deletePerson(id) {
                     <td>Barangay</td>
                     <td>City</td>
                     <td>Zip code</td>
-                    <td>Contact Type</td>
-                    <td>Contact Value<td>
+                    <td>Contact</td>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach items="${people}" var="person">
-                    <!--
-                    <c:if test="${person.contacts} == ''">
-                        null
-                    </c:if>-->
-                    <c:choose>
-                        <c:when test="${empty person.contacts}">
                             <tr>
                                 <td>
                                     <a href="/Person/edit?EditId=${person.id}">Edit</a>
@@ -95,36 +88,8 @@ function deletePerson(id) {
                                 <td>${person.address.barangay}</td>
                                 <td>${person.address.city}</td>
                                 <td>${person.address.zipCode}</td>
-                                <td></td>
-                                <td></td>
+                                <td><a href="/Contact/list?PersonId=${person.id}">View Contact/s</a></td>
                             </tr>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach items="${person.contacts}" var="contact">
-                            <tr>
-                                <td><a href="/Person/edit?EditId=${person.id}">Edit</a></td>
-                                <td></td>
-                                <td><a  href="#" onclick="deletePerson(${person.id});">Delete</a></td>
-                                <td>${person.name.firstName}</td>
-                                <td>${person.name.middleName}</td>
-                                <td>${person.name.lastName}</td>
-                                <td>${person.name.suffix}</td>
-                                <td>${person.name.title}</td>
-                                <td>${person.birthday}</td>
-                                <td>${person.GWA}</td>
-                                <td>${person.currentlyEmployed}</td>
-                                <td>${person.dateHired}</td>
-                                <td>${person.gender}</td>
-                                <td>${person.address.streetNumber}</td>
-                                <td>${person.address.barangay}</td>
-                                <td>${person.address.city}</td>
-                                <td>${person.address.zipCode}</td>
-                                <td>${contact.type}</td>
-                                <td>${contact.value}</td>
-                            </tr>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
                 </c:forEach>
             </tbody>
         </table>
