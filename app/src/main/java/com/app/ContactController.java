@@ -44,7 +44,7 @@ public class ContactController extends HttpServlet {
             Contacts contact = new Contacts();
             int contactId = Integer.parseInt(request.getParameter("EditId"));
             for(Contacts getContact : editPerson.getContacts()) {
-                if(contact.getId() == contactId) {
+                if(getContact.getId() == contactId) {
                     contact = getContact;
                     break;
                 }

@@ -63,33 +63,33 @@ function deletePerson(id) {
             </thead>
             <tbody>
                 <c:forEach items="${people}" var="person">
-                            <tr>
-                                <td>
-                                    <a href="/Person/edit?EditId=${person.id}">Edit</a>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <form action="/Person/delete?DeleteId=${person.id}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?');">
-                                        <!--<a href="#" onclick="deletePerson(${person.id});">Delete</a>-->
-                                        <input type="submit" value="Delete"/>
-                                    </form>
-                                </td>
-                                <td>${person.name.firstName}</td>
-                                <td>${person.name.middleName}</td>
-                                <td>${person.name.lastName}</td>
-                                <td>${person.name.suffix}</td>
-                                <td>${person.name.title}</td>
-                                <td>${person.birthday}</td>
-                                <td>${person.GWA}</td>
-                                <td>${person.currentlyEmployed}</td>
-                                <td>${person.dateHired}</td>
-                                <td>${person.gender}</td>
-                                <td>${person.address.streetNumber}</td>
-                                <td>${person.address.barangay}</td>
-                                <td>${person.address.city}</td>
-                                <td>${person.address.zipCode}</td>
-                                <td><a href="/Contact/list?PersonId=${person.id}">View Contact/s</a></td>
-                            </tr>
+                    <tr>
+                        <td>
+                            <a href="/Person/edit?EditId=${person.id}">Edit</a>
+                        </td>
+                        <td></td>
+                        <td>
+                            <form action="/Person/delete?DeleteId=${person.id}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?');">
+                                <!--<a href="#" onclick="deletePerson(${person.id});">Delete</a>-->
+                                <input type="submit" value="Delete"/>
+                            </form>
+                        </td>
+                        <td>${person.name.firstName}</td>
+                        <td>${person.name.middleName}</td>
+                        <td>${person.name.lastName}</td>
+                        <td>${person.name.suffix}</td>
+                        <td>${person.name.title}</td>
+                        <td>${person.birthday}</td>
+                        <td>${person.GWA}</td>
+                        <td>${person.currentlyEmployed}</td>
+                        <td>${person.dateHired}</td>
+                        <td>${person.gender}</td>
+                        <td>${person.address.streetNumber}</td>
+                        <td>${person.address.barangay}</td>
+                        <td>${person.address.city}</td>
+                        <td>${person.address.zipCode}</td>
+                        <td><a href="/Contact/list?PersonId=${person.id}">View Contact/s</a></td>
+                    </tr>
                 </c:forEach>
             </tbody>
         </table>

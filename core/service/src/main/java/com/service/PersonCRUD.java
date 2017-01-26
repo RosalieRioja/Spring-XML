@@ -10,8 +10,16 @@ public class PersonCRUD implements CRUD<Person> {
 
 	private PersonDao personDao;
 
-	private final String SORT_ASC = "asc";
-	private final String SORT_DESC = "desc";
+	private final static String SORT_ASC = "asc";
+	private final static String SORT_DESC = "desc";
+
+	private final static int SORT_GWA_ASC = 1;
+	private final static int SORT_GWA_DESC = 2;
+	private final static int SORT_DATEHIRED_ASC = 3;
+	private final static int SORT_DATEHIRED_DESC = 4;
+	private final static int SORT_LASTNAME_ASC = 5;
+	private final static int SORT_LASTNAME_DESC = 6;
+	private final static int SORT_NONE = 7;
 	
 	public PersonCRUD() {
 		personDao = new PersonDao();
@@ -32,27 +40,27 @@ public class PersonCRUD implements CRUD<Person> {
 		List<Person> lstPerson = null;// = personDao.listPersons();
 
 		switch(sort) {
-			case 1 :	//gwa
+			case SORT_GWA_ASC :
 				//lstPerson = personDao.listPersonsCriteria(SORT_ASC);
 				lstPerson = personDao.listPersonsQuery(SORT_ASC, "GWA");
 				break;
-			case 2 :
+			case SORT_GWA_DESC :
 				//lstPerson = personDao.listPersonsCriteria(SORT_DESC);
 				lstPerson = personDao.listPersonsQuery(SORT_DESC, "GWA");
 				break;
-			case 3 :	//datehired
+			case SORT_DATEHIRED_ASC :
 				lstPerson = personDao.listPersonsQuery(SORT_ASC, "dateHired");
 				break;
-			case 4 :
+			case SORT_DATEHIRED_DESC :
 				lstPerson = personDao.listPersonsQuery(SORT_DESC, "dateHired");
 				break;
-			case 5 :	//lastName
+			case SORT_LASTNAME_ASC :
 				lstPerson = personDao.listPersonsQuery(SORT_ASC, "lastName");
 				break;
-			case 6 :
+			case SORT_LASTNAME_DESC :
 				lstPerson = personDao.listPersonsQuery(SORT_DESC, "lastName");
 				break;
-			case 7 :	//none
+			case SORT_NONE :
 				lstPerson = personDao.listPersons();
 		}
 

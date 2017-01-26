@@ -7,7 +7,7 @@
 
 function validateAddContact() {
     $('.form-add-contact-error').hide();
-    `var valid = true;
+    var valid = true;
 
     if($('#type').val() == "") {
         $('#typeError').show();
@@ -18,7 +18,7 @@ function validateAddContact() {
         return (confirm('Are you sure to submit this contact?'));
     }
     else {
-        valid;
+        return valid;
     }
 }
 
@@ -50,8 +50,9 @@ function validateAddContact() {
     </div>
 
     <div align="center" style="margin-top: 50px;" class="form-add-contact" >
-        <form action="/Contact/list?PersonId=${personId}" method="post" onsubmit="validateAddContact();">
+        <form action="/Contact/list?PersonId=${personId}" method="post" onsubmit="return validateAddContact();">
             <input type="hidden" name="personId" id="personId" value="${personId}">
+
             <input type="hidden" name="contactId" id="contactId" value="${contact.id}">
             Contact Type:   <select name="type" id="type" value="${contact.type}">
                                 <option></option>
