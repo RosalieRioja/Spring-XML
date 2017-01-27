@@ -5,10 +5,6 @@
 
 <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-    //alert('ready');
-});
-
 function validateAddPerson() {
     $('.form-add-person-error').hide();
     var valid = true;
@@ -38,13 +34,14 @@ function validateAddPerson() {
 </script>
 <!-- ADD / EDIT PERSON JSP -->
 <html>
+<!--
     <style type="text/css">
     body {
         background-image:
             url('http://cdn.crunchify.com/wp-content/uploads/2013/03/Crunchify.bg_.300.png');
     }
     </style>
- 
+ -->
     <head>
         <title>Mini Registration System</title>
     </head>
