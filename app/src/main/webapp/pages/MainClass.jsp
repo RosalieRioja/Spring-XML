@@ -20,7 +20,8 @@
     <body>
 
     <div align="center">
-        Mini Registration System
+        <!--Mini Registration System-->
+        ${title}
     </div>
 
     <div align="center">

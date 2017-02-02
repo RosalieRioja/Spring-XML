@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
+import org.springframework.web.servlet.*;
+import org.springframework.web.servlet.mvc.*;
+
 import java.util.*;
 import java.text.*;
 import java.text.DateFormat;
-
+/*
 public class AddPerson extends HttpServlet {
   
     private PersonCRUD personCRUD;
@@ -42,10 +45,10 @@ public class AddPerson extends HttpServlet {
             Person editPerson = personCRUD.get(Integer.parseInt(request.getParameter("EditId")));
             request.setAttribute("person", editPerson);
             request.getRequestDispatcher("/AddPerson.jsp").forward(request, response);
-        } /*
-        else if((request.getRequestURI()).contains("delete")) {
-            request.getRequestDispatcher("/ListPerson.jsp").forward(request, response);
-        }*/
+        }
+        //else if((request.getRequestURI()).contains("delete")) {
+        //    request.getRequestDispatcher("/ListPerson.jsp").forward(request, response);
+        //}
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -117,4 +120,38 @@ public class AddPerson extends HttpServlet {
         }
     }
 
+}
+*/
+
+public class AddPerson extends AbstractController{ /*{extends HttpServlet {
+  
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/MainClass.jsp").forward(request, response);
+    
+    }
+
+    public ModelAndView Menu() {
+        return new ModelAndView("MainClass");
+    }*/
+
+    private PersonCRUD personCRUD;
+
+    public AddPerson() {
+        personCRUD = new PersonCRUD();
+    }
+
+    protected ModelAndView handleRequestInternal(HttpServletRequest request,
+        HttpServletResponse response) throws Exception {
+
+        ModelAndView model = new ModelAndView("ListPerson");
+            //List<PersonDTO> lstPerson = personCRUD.read(7);
+        personCRUD = new PersonCRUD();
+            List<Person> lstPerson = personCRUD.read(7);
+            //request.setAttribute("people", lstPerson);
+        model.addObject("people", lstPerson);
+
+        return model;
+
+        //return new ModelAndView("ListPerson");
+    }
 }
