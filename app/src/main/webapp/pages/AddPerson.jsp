@@ -60,7 +60,7 @@ function validateAddPerson() {
     </div>
 
     <div align="center" style="margin-top: 50px;" class="form-add-person" >
-        <form action="/Person/list" method="post" onsubmit="return validateAddPerson();">
+        <form action="/Person/submit" method="post" onsubmit="return validateAddPerson();">
             <input type="hidden" name="id" id="id" value="${person.id}">
             Name: <br>
             First name: <input      type="text" id="firstname"  name="firstname"    size="20px" required value="${person.name.firstName}"/> <br>

@@ -1,7 +1,6 @@
 package com.model;
 
 import java.util.*;
-import javax.persistence.*;
 
 import com.util.*;
 
@@ -15,7 +14,7 @@ public class PersonDTO {
 	private boolean currentlyEmployed;
 	private PersonGender gender;
 	private PersonAddress address;
-	private Set<Contacts> contacts;
+	private Set<ContactsDTO> contacts;
 	private Set<Roles> roles;
 
 	public PersonDTO() {}
@@ -84,11 +83,11 @@ public class PersonDTO {
 		return this.address;
 	}
 
-	public Set<Contacts> getContacts() {
+	public Set<ContactsDTO> getContacts() {
 		return this.contacts;
 	}
 	
-	public void setContacts(Set<Contacts> contacts_param) {
+	public void setContacts(Set<ContactsDTO> contacts_param) {
 		this.contacts = contacts_param;
 	}
 

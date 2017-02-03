@@ -25,18 +25,6 @@
     </div>
 
     <div align="center">
-        <!--
-        <br>Menu<br>
-        <br><a href="#" onclick="window.location.assign('/Person/add');" >Register Person</a>
-        <br><a href="#">Update Person record</a>
-        <br><a href="#">Delete Person record</a>
-        <br><a href="#" onclick="window.location.assign('/Person/list');">Print list of Person record</a>
-        <br><a href="#">Add Contact to Person</a>
-        <br><a href="#">Update Contact of Person</a>
-        <br><a href="#">Delete Contact of Person</a>
-        <br><a href="#">Assign Role to Person</a>
-        <br><a href="#">Unassign Role of Person</a>
-        -->
         <a href="/Person/list">Go to List of Person</a>
     </div>
     </body>

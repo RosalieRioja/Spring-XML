@@ -21,7 +21,23 @@
         <property name="prefix" value="/pages/" />
         <property name="suffix" value=".jsp" />
     </bean>
-    
+
+    <bean id="HomeController" class="com.MainClass"/>
+    <bean id="PersonController" class="com.app.AddPerson"/>
+    <bean id="ContactController" class="com.app.ContactController"/>
+
+    <bean id="urlHandler" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="urlMap">
+            <map>
+                <entry key="/" value-ref="HomeController"/>
+                <entry key="/Menu" value-ref="HomeController"/>
+                <entry key="/Person/*" value-ref="PersonController"/>
+                <entry key="/Contact/*" value-ref="ContactController"/>
+                <!--<entry key="/Person/*" value-ref="PersonController"/> default error page? -->
+            </map>
+        </property>
+    </bean>
+<!--    
     <bean name="/welcome"
         class="com.MainClass" >
     </bean>
@@ -33,7 +49,7 @@
     <bean name="/Person"
         class="com.app.AddPerson" >
     </bean>
-<!--
+
     <bean name="/Contact/*"
         class="com.app.ContactController" >
     </bean>

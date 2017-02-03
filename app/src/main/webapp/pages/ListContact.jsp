@@ -24,7 +24,11 @@
     </div>
     <br>
     <div align="center">
-        <a href="#" onclick="window.location.assign('/Contact/add?PersonId=${person.id}');">Add Contact</a>
+        <form action="/Contact/add" method="post">
+            <!--<a href="#" onclick="window.location.assign('/Contact/add?PersonId=${person.id}');">Add Contact</a>-->
+            <input type="hidden" name="personId" id="personId" value="${person.id}">
+            <input type="submit" value="Add Contact"/>
+        </form>
     </div>
     <br>
     <div align="center">
@@ -44,12 +48,19 @@
                 <c:forEach items="${person.contacts}" var="contact">
                     <tr>
                         <td>
-                            <a href="/Contact/edit?PersonId=${person.id}&EditId=${contact.id}">Edit</a>
+                            <form action="/Contact/edit" method="post">
+                                <!--<a href="/Contact/edit?PersonId=${person.id}&EditId=${contact.id}">Edit</a>-->
+                                <input type="hidden" name="personId" id="personId" value="${person.id}">
+                                <input type="hidden" name="editId" id="editId" value="${contact.id}">
+                                <input type="submit" value="Edit"/>
+                            </form>
                         </td>
                         <td></td>
                         <td>
-                            <form action="/Contact/delete?PersonId=${person.id}&DeleteId=${contact.id}" method="post" onsubmit="return confirm('Are you sure you want to delete this contact?');">
+                            <form action="/Contact/delete" method="post" onsubmit="return confirm('Are you sure you want to delete this contact?');">
                                 <!--<a href="#" onclick="deletePerson(${person.id});">Delete</a>-->
+                                <input type="hidden" name="personId" id="personId" value="${person.id}">
+                                <input type="hidden" name="deleteId" id="deleteId" value="${contact.id}">
                                 <input type="submit" value="Delete"/>
                             </form>
                         </td>

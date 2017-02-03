@@ -6,7 +6,7 @@ import com.util.*;
 
 import java.util.*;
 
-public class RolesCRUD implements CRUD<Person> {
+public class RolesCRUD {/*implements CRUD<Person> {
 
 	private PersonCRUD personCRUD;
 	
@@ -153,5 +153,5 @@ public class RolesCRUD implements CRUD<Person> {
 			System.out.println("There are no contacts.");
 		}
 	}
-
+*/
 }

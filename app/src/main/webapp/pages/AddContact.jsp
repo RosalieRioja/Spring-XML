@@ -51,10 +51,10 @@ function validateAddContact() {
     </div>
 
     <div align="center" style="margin-top: 50px;" class="form-add-contact" >
-        <form action="/Contact/list?PersonId=${personId}" method="post" onsubmit="return validateAddContact();">
+        <form action="/Contact/submit" method="post" onsubmit="return validateAddContact();">
             <input type="hidden" name="personId" id="personId" value="${personId}">
-
             <input type="hidden" name="contactId" id="contactId" value="${contact.id}">
+
             Contact Type:   <select name="type" id="type" value="${contact.type}">
                                 <option></option>
                                 <option value="LANDLINE">Landline</option>
@@ -64,7 +64,7 @@ function validateAddContact() {
                 <label style="display:none; color:red;" id="typeError" class="form-add-contact-error">Please select Contact Type.</label> <br>
             Value:   <input     type="text"     id="value"  name="value"    size="20px" required value="${contact.value}"> <br>
             <input type="submit" value="Submit">
-            <input type="button" value="cancel" onclick="window.location.assign('/Contact/list?PersonId=${personId}');">
+            <input type="button" value="cancel" onclick="window.location.assign('/Contact/list');">
         </form>
     </div>
 

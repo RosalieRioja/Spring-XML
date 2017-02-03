@@ -56,12 +56,17 @@
                 <c:forEach items="${people}" var="person">
                     <tr>
                         <td>
-                            <a href="/Person/edit?EditId=${person.id}">Edit</a>
+                            <form action="/Person/edit" method="post">
+                                <!--<a href="/Person/edit?EditId=${person.id}">Edit</a>-->
+                                <input type="hidden" name="editId" id="editId" value="${person.id}">
+                                <input type="submit" value="Edit"/>
+                            </form>
                         </td>
                         <td></td>
                         <td>
-                            <form action="/Person/delete?DeleteId=${person.id}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?');">
+                            <form action="/Person/delete" method="post" onsubmit="return confirm('Are you sure you want to delete this record?');">
                                 <!--<a href="#" onclick="deletePerson(${person.id});">Delete</a>-->
+                                <input type="hidden" name="deleteId" id="deleteId" value="${person.id}">
                                 <input type="submit" value="Delete"/>
                             </form>
                         </td>
@@ -79,7 +84,12 @@
                         <td>${person.address.barangay}</td>
                         <td>${person.address.city}</td>
                         <td>${person.address.zipCode}</td>
-                        <td><a href="/Contact/list?PersonId=${person.id}">View Contact/s</a></td>
+                        <td><form action="/Contact/list" method="post">
+                                <!--<a href="/Contact/list?PersonId=${person.id}">View Contact/s</a>-->
+                                <input type="hidden" name="personId" id="personId" value="${person.id}">
+                                <input type="submit" value="View Contact"/>
+                            </form>
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>
