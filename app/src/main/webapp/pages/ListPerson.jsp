@@ -77,7 +77,6 @@
                         <td>${person.address.city}</td>
                         <td>${person.address.zipCode}</td>
                         <td><form action="/Contact/list" method="post">
-                                <!--<a href="/Contact/list?PersonId=${person.id}">View Contact/s</a>-->
                                 <input type="hidden" name="personId" id="personId" value="${person.id}">
                                 <input type="submit" value="View Contact"/>
                             </form>
