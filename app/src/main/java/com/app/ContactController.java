@@ -24,8 +24,8 @@ public class ContactController implements Controller{
 
     private PersonCRUD personCRUD;
 
-    public ContactController() {
-        personCRUD = new PersonCRUD();
+    public ContactController(PersonCRUD personCRUD_param) {
+        personCRUD = personCRUD_param;
     }
 
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {

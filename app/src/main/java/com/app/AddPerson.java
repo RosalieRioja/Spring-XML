@@ -24,8 +24,8 @@ public class AddPerson implements Controller{
 
     private PersonCRUD personCRUD;
 
-    public AddPerson() {
-        personCRUD = new PersonCRUD();
+    public AddPerson(PersonCRUD personCRUD_param) {
+        personCRUD = personCRUD_param;
     }
 
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
