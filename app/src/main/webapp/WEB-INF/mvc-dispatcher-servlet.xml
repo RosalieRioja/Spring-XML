@@ -2,20 +2,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
-<!--
-    <bean name="/welcome.htm"
-        class="com.mkyong.common.controller.HelloWorldController" />
-
-    <bean id="viewResolver"
-        class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
-        <property name="prefix">
-            <value>/WEB-INF/pages/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
-    </bean>
--->
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
         <property name="prefix" value="/pages/" />
@@ -38,30 +24,8 @@
                 <entry key="/Menu" value-ref="HomeController"/>
                 <entry key="/Person/*" value-ref="PersonController"/>
                 <entry key="/Contact/*" value-ref="ContactController"/>
-                <!--<entry key="/Person/*" value-ref="PersonController"/> default error page? -->
             </map>
         </property>
     </bean>
 
-<!--
-    <bean id="e" class="com.javatpoint.Employee">  
-        <constructor-arg value="10" type="int"></constructor-arg>  
-    </bean>
-
-    <bean name="/welcome"
-        class="com.MainClass" >
-    </bean>
-
-    <bean name="/"
-        class="com.MainClass" >
-    </bean>
-
-    <bean name="/Person"
-        class="com.app.AddPerson" >
-    </bean>
-
-    <bean name="/Contact/*"
-        class="com.app.ContactController" >
-    </bean>
--->
 </beans>

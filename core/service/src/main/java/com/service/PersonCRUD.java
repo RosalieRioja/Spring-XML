@@ -26,15 +26,13 @@ public class PersonCRUD implements CRUD<PersonDTO> {
 	}
 
 	public List<PersonDTO> read(int sort) {
-		List<Person> lstPerson = null;// = personDao.listPersons();
+		List<Person> lstPerson = null;
 
 		switch(sort) {
 			case SortValue.SORT_GWA_ASC :
-				//lstPerson = personDao.listPersonsCriteria(SORT_ASC);
 				lstPerson = personDao.listPersonsQuery(SortValue.SORT_ASC, "GWA");
 				break;
 			case SortValue.SORT_GWA_DESC :
-				//lstPerson = personDao.listPersonsCriteria(SORT_DESC);
 				lstPerson = personDao.listPersonsQuery(SortValue.SORT_DESC, "GWA");
 				break;
 			case SortValue.SORT_DATEHIRED_ASC :

@@ -5,13 +5,7 @@
 
 <!-- LIST PERSON JSP -->
 <html>
-<!--    <style type="text/css">
-    body {
-        background-image:
-            url('http://cdn.crunchify.com/wp-content/uploads/2013/03/Crunchify.bg_.300.png');
-    }
-    </style>
- -->
+
     <head>
         <title>Mini Registration System</title>
     </head>
@@ -57,7 +51,6 @@
                     <tr>
                         <td>
                             <form action="/Person/edit" method="post">
-                                <!--<a href="/Person/edit?EditId=${person.id}">Edit</a>-->
                                 <input type="hidden" name="editId" id="editId" value="${person.id}">
                                 <input type="submit" value="Edit"/>
                             </form>
@@ -65,7 +58,6 @@
                         <td></td>
                         <td>
                             <form action="/Person/delete" method="post" onsubmit="return confirm('Are you sure you want to delete this record?');">
-                                <!--<a href="#" onclick="deletePerson(${person.id});">Delete</a>-->
                                 <input type="hidden" name="deleteId" id="deleteId" value="${person.id}">
                                 <input type="submit" value="Delete"/>
                             </form>

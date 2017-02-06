@@ -5,14 +5,7 @@
 
 <!-- LIST CONTACT JSP -->
 <html>
-<!--
-    <style type="text/css">
-    body {
-        background-image:
-            url('http://cdn.crunchify.com/wp-content/uploads/2013/03/Crunchify.bg_.300.png');
-    }
-    </style>
- -->
+
     <head>
         <title>Mini Registration System</title>
     </head>
@@ -25,7 +18,6 @@
     <br>
     <div align="center">
         <form action="/Contact/add" method="post">
-            <!--<a href="#" onclick="window.location.assign('/Contact/add?PersonId=${person.id}');">Add Contact</a>-->
             <input type="hidden" name="personId" id="personId" value="${person.id}">
             <input type="submit" value="Add Contact"/>
         </form>
@@ -49,7 +41,6 @@
                     <tr>
                         <td>
                             <form action="/Contact/edit" method="post">
-                                <!--<a href="/Contact/edit?PersonId=${person.id}&EditId=${contact.id}">Edit</a>-->
                                 <input type="hidden" name="personId" id="personId" value="${person.id}">
                                 <input type="hidden" name="editId" id="editId" value="${contact.id}">
                                 <input type="submit" value="Edit"/>
@@ -58,7 +49,6 @@
                         <td></td>
                         <td>
                             <form action="/Contact/delete" method="post" onsubmit="return confirm('Are you sure you want to delete this contact?');">
-                                <!--<a href="#" onclick="deletePerson(${person.id});">Delete</a>-->
                                 <input type="hidden" name="personId" id="personId" value="${person.id}">
                                 <input type="hidden" name="deleteId" id="deleteId" value="${contact.id}">
                                 <input type="submit" value="Delete"/>
